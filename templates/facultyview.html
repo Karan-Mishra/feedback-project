@@ -1,0 +1,121 @@
+{% load static %}
+<html>
+    <head>
+        <title>Student Profile</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    </head>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+        body{
+        background:url("https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60");
+        background-repeat:no-repeat;
+        background-size:cover;
+        color:white;
+        }
+
+        h1{
+        text-align:center;
+        color:black;
+        font-size:60px;
+        font-weight: bold;
+        font-variant: small-caps;
+        text-shadow: 5px 5px white ;
+}
+table{
+
+            color: white;
+            border-style: outset;
+             border-color: black;
+             background-color: white;
+        }
+        th{
+            font-family:Algerian;
+            text-align: center;
+            color: black;
+            font-size: 15px;
+            padding:5px;
+        }
+        td{
+
+            text-align: center;
+            color: Tomato;
+            font-size: 20px;
+            padding:5px;
+
+        }
+
+
+
+         </style>
+<body>
+<div class="container-fluid">
+  <h1>Faculty ViewData Here</h1>
+</div>
+
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset col-md-4">
+            <form method="POST">
+
+                {% csrf_token %}
+
+                 <table border="3px solid black">
+                     <thead>
+                       <tr>
+                           <th>Id</th>
+                           <th>Faculty Id</th>
+                           <th >First name</th>
+                           <th>Last name</th>
+                           <th>Password</th>
+                           <th>Confirm Password</th>
+                           <th>Mobile</th>
+                           <th>Email</th>
+                           <th>Department</th>
+                           <th>Subject</th>
+                           <th>Gender</th>
+                           <th>Year</th>
+
+
+                       </tr>
+                     </thead>
+                     <tbody>
+                       {% for i in FacultytviewForm %}
+                           <tr>
+                               <td>{{ i.id }}</td>
+                               <td>{{i.facultyid}}</td>
+                               <td>{{ i.firstname }}</td>
+                               <td>{{ i.lastname }}</td>
+                               <td>{{ i.password }}</td>
+                               <td>{{ i.confirmpassword }}</td>
+                               <td>{{i.mobile}}</td>
+                               <td>{{ i.email }}</td>
+                               <td>{{i.department}}</td>
+                               <td>{{i.subject}}</td>
+                               <td>{{ i.gender }}</td>
+                                <td>{{ i.year }}</td>
+
+
+                           </tr>
+                       {% endfor %}
+                     </tbody>
+
+                 </table>
+            <br>
+
+          {{ slform }}
+                <br>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

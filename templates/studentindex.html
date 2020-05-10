@@ -1,0 +1,119 @@
+{% load static %}
+<html>
+    <head>
+        <title>retrieving data</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    </head>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+        body{
+        background-color: gray;
+        background-repeat:no-repeat;
+        background-size:cover;
+        color:white;
+        }
+
+        h1{
+        text-align:center;
+        color:black;
+        font-size:60px;
+        font-weight: bold;
+        font-variant: small-caps;
+        text-shadow: 5px 5px white ;
+}
+
+        .menuBar {
+            list-style: none;
+            position: fixed;
+            right: 1px;
+            background-color: #000000;
+            padding: 2px 0;
+            z-index: 1;
+            height: 45px;
+            width: 100%;
+        }
+        .menuBar li {
+            list-style: none;
+            float: left;
+            margin-top: 10px;
+        }
+        .menuBar a {
+            padding: 6px 15px;
+            color: #D3BFA8;
+            border: 1px solid #D3BFA8;
+            margin: 2px 10px;
+            text-decoration: none;
+            box-shadow: 2px 1px 10px #D3BFA8;
+            font-family: Calibri;
+        }
+        .menuBar a:hover {
+            background-color: #D3BFA8;
+            color: #000;
+            text-decoration: none;
+            box-shadow: 2px 1px 10px #000;
+            transition: 1.5s;
+            font-family: Calibri;
+
+        }
+
+
+        .cphotos{
+            position: relative;
+            top: 220px;
+            {#left: 0px;#}
+            {#margin: 10px;#}
+        }
+        img {
+            width: 450px;
+            height: 340px;
+        }
+        img:hover {
+            padding: 5px;
+        }
+
+
+         </style>
+<body>
+<div class="container-fluid">
+
+</div>
+<h1>Welcome To Student Dashboard</h1>
+<center><h2 style="  font-weight: bold; font-variant: small-caps; color:white; ">{{name}} {{lastname}}</h2></center>
+    <header>
+        <ul class="menuBar">
+
+
+            <li><a href= "http://www.kashiit.ac.in/" > HOME </a></li>
+            <li><a href="/StudentView/" >View</a></li>
+            <li><a href="{% url 'StudentUpdate' rollno=id %}" >Update</a></li>
+            <li> <a href="#studentfeedback">Feedback</a></li>
+            <li   style =" float:right;"> <a " href="{% url 'student-logout' %}">Log Out</a> </li>
+
+
+
+
+
+        </ul>
+    </header>
+
+
+<div class="row cphotos">
+        <div class="col-md-4"><img src="{% static 'images/p1.jpg' %}"></div>
+        <div class="col-md-4"><img src="{% static 'images/p2.png' %}"></div>
+        <div class="col-md-4"><img src="{% static 'images/p3.jpg' %}"></div>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

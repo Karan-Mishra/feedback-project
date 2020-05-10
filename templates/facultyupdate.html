@@ -1,0 +1,87 @@
+<html>
+<head>
+    <title>Student Update Form</title>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body{
+            background-repeat:no-repeat ;
+            background-size: cover;
+
+        }
+        .title {
+                margin: 5px auto 30px;
+                font-size: 25px;
+                text-align: center;
+                text-decoration: underline;
+                font-weight: bold;
+                color: #000;
+                background-color: lightgray;
+                padding: 5px;
+                border-radius: 5px;
+            }
+            input[type=text], input[type=email], input[type=password],input[type=number] {
+                background-color: #E6E6E6;
+                padding: 6px;
+                font-size: small;
+                color: #574B4B;
+                font-weight: bold;
+            }
+            input[type=submit] {
+                padding: 5px 25px;
+                font-size: small;
+                color: lightgrey;
+                margin-left: 20px;
+            }
+            input[type=reset] {
+                padding: 5px 25px;
+                font-size: small;
+                color: lightgrey;
+                margin-left: 50px;
+            }
+             li {
+                list-style: none;
+                display: inline-block;
+                margin-right: 30px;
+            }
+            form {
+                border: 2px solid black;
+                padding: 40px;
+
+                border-radius: 5px;
+                }
+                 .linkClass a {
+                color: #000;
+                font-size: 15px;
+                margin: 0px 20px 10px 200px;
+            }
+
+     </style>
+
+</head>
+<body background="data:image/jpeg;base64,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">
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+             <div class="title">Faculty Update Form </div>
+          <form method="POST">
+              {% csrf_token %}
+              {{ form }}
+              <br><br>
+              <center>
+              <input type="submit" value="Submit" class="btn btn-primary mybtn">
+              </center>
+          </form>
+
+
+
+        </div>
+
+    </div>
+</div>>
+
+</body>
+</html>

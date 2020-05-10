@@ -1,0 +1,111 @@
+{% load static %}
+<html>
+    <head>
+        <title>Faculty Login</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+        <style>
+            body {
+                background-color: lightcyan;
+                width: 100%;
+                color: #000;
+            }
+            .title {
+                margin: 5px auto 30px;
+                font-size: 25px;
+                text-align: center;
+                text-decoration: underline;
+                font-weight: bold;
+                color: #000;
+                background-color: lightgray;
+                padding: 5px;
+                border-radius: 5px;
+            }
+            input[type=text], input[type=email], input[type=password],input[type=number] {
+                background-color: #E6E6E6;
+                padding: 6px;
+                font-size: small;
+                color: #574B4B;
+                font-weight: bold;
+            }
+            input[type=submit] {
+                padding: 5px 25px;
+                font-size: small;
+                color: lightgrey;
+                margin-left: 20px;
+            }
+            input[type=reset] {
+                padding: 5px 25px;
+                font-size: small;
+                color: lightgrey;
+                margin-left: 50px;
+            }
+            li {
+                list-style: none;
+                display: inline-block;
+                margin-right: 30px;
+            }
+            form {
+                border: 2px solid black;
+                padding: 40px;
+
+                border-radius: 5px;
+            }
+            .linkClass a {
+                color: #000;
+                font-size: 15px;
+                margin: 0px 20px 10px 200px;
+            }
+            .btn-btn-danger {
+                color: #000;
+                background-color: #fff;
+                position: relative;
+
+            }
+            .btn-btn-success{
+                color: #000;
+                background-color: #fff;
+                position: relative;
+
+            }
+
+
+        </style>
+    </head>
+<div class="container">
+    <div class="row">
+
+
+
+        <div class="col-md-offset-4 col-md-4">
+           <center><img src="{% static 'images/E1.png' %}" class="img-circle" alt="Cinque Terre" width="204" height="189"></center>
+            <form method="POST">
+                <div class="title">Faculity  Login </div>
+                {% csrf_token %}
+                {{ facultyloginForm}}
+                <br>
+                {% if messages %}
+                      <center style="color:red;"> {% for message in messages %}
+                           {{ message }}
+                           {% endfor %}
+                           {% endif %}</center><br>
+                <center>
+                    <input type="submit" value="Login " class="btn-btn-success">
+                    <input type="reset" value="Clear" class="btn-btn-danger">
+                </center>
+
+            <br>
+            <br>
+                <center>
+                 <a href="/FacultyForgotPassword/" style="font-size: 20px; color: black"> Forgot Password</a><br><br>
+                 <button type="button" class="btn btn-primary mybtn"> <a href="/index/" style="font-size: 20px; color: black">Back</a></button>
+                 </center>
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

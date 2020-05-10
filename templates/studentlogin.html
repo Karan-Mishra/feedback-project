@@ -1,0 +1,104 @@
+{% load  static %}
+<html>
+    <head>
+        <title>SudentLoginForm</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+        <style>
+            body {
+
+                width: 100%;
+                color: #000;
+            }
+            .title {
+                margin: 5px auto 30px;
+                font-size: 25px;
+                text-align: center;
+                text-decoration: underline;
+                font-weight: bold;
+                color: #000;
+                background-color: lightgray;
+                padding: 5px;
+                border-radius: 5px;
+            }
+            input[type=text], input[type=email], input[type=password],input[type=number] {
+                background-color: #E6E6E6;
+                padding: 6px;
+                font-size: small;
+                color: #574B4B;
+                font-weight: bold;
+            }
+            input[type=submit] {
+                padding: 5px 25px;
+                font-size: small;
+                color: lightgrey;
+                margin-left: 20px;
+            }
+            input[type=reset] {
+                padding: 5px 25px;
+                font-size: small;
+                color: lightgrey;
+                margin-left: 50px;
+            }
+            li {
+                list-style: none;
+                display: inline-block;
+                margin-right: 30px;
+            }
+            form {
+                border: 2px solid black;
+                padding: 40px;
+
+                border-radius: 5px;
+            }
+            .linkClass a {
+                color: #000;
+                font-size: 15px;
+                margin: 0px 20px 10px 200px;
+            }
+            .mybtn {
+                color: #000;
+                background-color: #fff;
+                position: relative;
+
+            }
+
+        </style>
+    </head>
+
+       <body background="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUTExMVFhUXFxcXFRcYGRsYGBcXFxcXFxgXGBoZHiggGB0lHRUYITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OFw8PGisdHR0tLS0tLS0tLS0tLS0tKy0rLS0tLS0tKy0tKy0rLS0rKy0tLTc3NysrNy0rLS0rKy0rK//AABEIALcBEwMBIgACEQEDEQH/xAAZAAADAQEBAAAAAAAAAAAAAAABAgMABAX/xAAqEAACAQIFAwQDAQEBAAAAAAAAAQIDERJRYXHwEyExQYGRobHB8eHRYv/EABkBAAMBAQEAAAAAAAAAAAAAAAABAgMFBP/EABsRAQEBAQEBAQEAAAAAAAAAAAABEQISIUEx/9oADAMBAAIRAxEAPwDzIRKwjsGEC1OHLnjtdqBGBZR0YYw5l/0vGnmjO1cJH3KXRSnFNX7FOn6mdsWgkBJHXGnziN0kTsDltc2HQ6OnoFw7D9QY5sKyGwrItgCqbDQgo6GwLI6MDMqYaWOeMFkOoLljoVJ8sMqLyJ9HjkcBcJ2dPQHTzD0HG4csbAdjijOmsg9G4nAHS9TtwcsZwHOicPTDgfLHW6Yjpj9ByuO/P6Jgv5/B14OcZukP0McVtefIri819na6Qrpbj9E5GnxCTud0qQjpj9jHnSeiJTPQnSOedMudRNjikybOqVIlOHO5pLGdlQ9gFkjD1OLwlv8AB0wluRjFZMvCLyJti+dUhUZenMhCHc6ILn9MusacqQkyuN5onCBaMOdjO4qNGY2IKpsbpk/DTcrZhUtbj9ILjoHw8SxcsZNj4RnECLjzDjBh2A4XDIDqosg9Vak8AMIsgxTrA6nLMCjoFQWQZBjdXMDqL0NhQXBah8PCuSA5DqKyZsKAYn20+GC+ozSFcFqUWNcPfMyp7hcdxfBgNMGAazM76AeJyYrYXdC35xjwkajOedvFmdM5cuc1SXGXCsc05bnPKa1Oqcmc0zbllYi2jDsxeljvprU6Yw0+CVNXOqnAw6rSGhHTnwWjHlv+AhAqkZWrZQHwBSHUfYkFjEZQZRRH8ehOnqDW3yOo3HxGDRpMIHTKbL9G55FoT6ZumyqjuawaEunobAUsYNCLjzjBhLhtzuPQhgNhKOJsPLBoJgQJxQ4rjv8AFwBMC1C6S53C9voyen0MN0+efwK4DxkM2hfTRlEng4zouAe0OSUSconU4PUnJIqUnLUiyE0dskc846FylXFUWhzSR21YnM6RtKz6iGEw0oq/jnyYvWb0YPX9F4PX7IRjnY6IIwrWKQb83+7fsrBvP7/6CCehaMdDO1bRKYtAxTH9v2ToBPncZoMVzsFRJ0AkHC9Q2CLQTuGO4bhXgDazNYK2N7Em2IXvkMK56DhFs8vyK9Poe4E1n+BkGJmxsLM4gZW29wpMMBrcuATsbD38FUgvcWmg/Pj7CmsijWojiOUEa5YEinuaT7eQ0kHIm2Va1Qk0VDRmyM7FJ7EZx0+zSEhUjqc8462z7dzpl7nPNmkRYjh/9GDJamLTjvpJHRBI4oM6Iy5cz6io7IFo+5xwfOxdXMrFOtMKZzJtFacs7fRNhui5kiTkFVkTlCgSfVQeohZQcCSCrZjNLMCLZc/oYCuK83G+PgRi46iyiHDywLaCBMBlAbCa3Lj0J4dwWKmVtb+49NK6GUtfruP2FUtQ0A5mcgtitrlwABMthWll9jBkkaUQX1Ecgwmw3EnAM5CSkPASUSFSJaTJSehcNzVEc846HRUksjmnJGvKKlh0CJKRi/qdi8Io6YSIQbzLRvziFRHTEso6slTLU+/8MatWKHQq2G5n+CDGKGcRVfLnyZATSjqDCFx0DYDBDJGaC0A0LmQbMLQgF3mByeYb6igB6rz7bG623PcFnkawZAPV0QFWBYzQsij9XTnwI6mnPgGEFtGPIDdRBuIkGwYDbhUkJYLAhdicmFxQMW44CYhZsZyFk0Mk5yIVJIrUaIt6suQEmlock1sPUOeZrzyi0k4K5hXIJplQ6qdRl4VdbnNB88HRT9yKcXptl1PM54ItH2M6teNQrGa9CMdiqkZ01Iz4/K+AqYqWRsJIOpGvn8GwjJMRtiMmC/HcNgJlIyA0zRWwA1lkI0G+jABskMoi/AEtgB0uXC1YSwzvqTTB7GSAgd8xm1mawLMN2BMo7mwg6jDGfqH0FsCUEO5o2Jc7j+hGUSUkdMmicktCpQ45eSVSJ0ysJUiaSpxwyiQqROqpt+jlqLQ15RUcCMZpahLQ6IQL04kISOmm+xnVyK0125/06IIhSkXhIzq1oIpGIlOpbKxWMk/BnTNHQZJiKXcoreP9IoC2hsI6azNKVvNhaE8OYYqxkzJj0CwRM5BtznkChmKHF/gHPnYMMrSFcBrvQXEx4DKJriuQspBg1XEBvcnGQWxeTM5AxCKQznmPBrGuLi0BceDRcgYzKV8ueBXsMmlPQjOQz2FkVINRkSk+cZeRKa3+CoSM+5zVfY6ai52Oao2acprmbRh13AaM16bLwuctOTOmK8EVcWg3ol+S0SMX7F4mVXFIrt/o8RYJcsVT5Yi1WGw6Bj3MpahxEgyWhkl4ExL+jqfOwgZLncEl6Gxc/gOovQQHAuI0FbIHUXLhxof0m7CthuhVJa+9uMcDeprG7Zi4rd01+RjBYLGT+jDGDfUy4+eBe4bCBr9vI1ydgMMCjegPlc0Jy3A3y4YFnuTewrYuMeAzgJJMzqC4x5SLKWaIyaHqVL83JSkipBqVU5ajL1EjnqSNeYz6JfMxPDzsE0xnq0TpgtThU+XLwqMixrK7Kb+f0Xi9X9HHGoWhUMrFSutMdPc54z0KRn7EWHqyeT+jYiWJBuhYarqcegyqZWIOSFc1z0DA6uoDEQxj3FhrYvXsJjEDYALQvU5Zhk9xO2bHCNj5YLl28EcGo1lmHwfVFJc8huuf0m2FAD9jJr/hM19gCzlz+iymJiBfUMIZTNjfgRodD/gK5bCzkM4k5RXLjIXLQnKS5+8gyiRlD2KkhNOfxuRnIM75kpu2RcidJUfP6cs2WnLc55PQ15jPqp22CC7yMWzNB7fZZaW+e5zR1LRkia0jpgnxlotnNB2KqZnWkXix8b8c27eCHUt/f8GUxYNXVWw8apDH4Mp5E4eujqbg6j35kRUrAlPUPJ66OpmUxZo8/GUjUdvIXgene5LK30CU1zscaqf0MZ2F5PXVJ9uxoyOPHmM6movIldeMPU5xnH1TOosheT11OoZSORz5f/DdTb5H5Gurqc4gY0csq2xurn+f+h5LXV1AqfP4cjnsbHsPyLXR1cnz9DOqcbqhdQPJa6pVBZVTl6uQuMc4K9OmVUEqpyufETVXIrwV6dMpoi6mxJ1NRJT4ipym9GlM53PbsapM56rNOeWfVWxaMJwyfLf4Yrwj3VYl6dwmCqiq8XKQMYzrWKJc/Q7bMYmmKYjnqYwSCh1Tc9exjDTv0zSC46GMSoVZoCkrGMBs2ZL1tz0MYDGM9zKpHlzGHYmUXNBcgGJwaDmjY9jGGBj38W/AsgmD9LSKb3zApGMUTJsHoYwiLJEpSCYqFSX2+ybRjFRNTlMhOZjGkZ2ldTQxjDLa/9k=">
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+        <center><img src="{% static 'images/s1.jpg' %}" class="img-circle" alt="Cinque Terre" width="204" height="189"></center>
+            <form method="POST">
+                <div class="title"> Login</div>
+
+                {% csrf_token %}
+
+                {{ loginForm }}<br><br>
+                     {% if messages %}
+                      <center style="color:red;"> {% for message in messages %}
+                           {{ message }}
+                           {% endfor %}
+                           {% endif %}</center><br>
+                       <center>
+                    <input type="submit" value="Login" class="btn btn-primary mybtn">
+                    <input type="reset" value="Clear" class="btn btn-primary mybtn">
+                   </center>
+            <br>
+            <br>
+            <center>
+            <a href="/StudentRegistration/" style="font-size: 20px; color: black">New User?</a>
+            <a href="/StudentForgotPassword/" style="font-size: 20px; color: black"> Forgot Password</a><br><br><br>
+                <button type="button" class="btn btn-primary mybtn"> <a href="/index/" style="font-size: 20px; color: black">Back</a></button>
+
+
+             </form>
+        </div>
+
+    </div>
+</div>>
+
+</body>
+</html>
