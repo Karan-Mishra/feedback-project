@@ -45,6 +45,7 @@ class StudentRegistration(models.Model):
         ('O','Other')
     )
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, null=True)
+    admission_year = models.IntegerField(null=True, blank=True)
 
     class Meta:
         db_table = 'students'
@@ -79,14 +80,7 @@ class FacultyDatabase(models.Model):
     year = models.CharField(max_length=1,choices=YEAR_CHOICES,null=True)
 
 
-class Questions(models.Model):
-    question_choices = (
-        (1,'Strongly Agree'),
-        (2,'SECONDYEAR'),
-        (3,'THIRDYEAR'),
-        (4,'FORTHYEAR'),
-    )
-    options = models.IntegerField(choices=question_choices)
+class Question(models.Model):
     questions = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -99,32 +93,35 @@ class Questions(models.Model):
         return self.questions[:50]
 
 
-class Feedback(models.Model):
+class FeedbackForm(models.Model):
+    title = models.CharField(max_length=50, blank=True)
     faculty = models.ForeignKey(FacultyDatabase, on_delete=models.CASCADE)
-    questions = models.ManyToManyField(Questions)
+    status = models.BooleanField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    total_students = models.IntegerField(default=0, null=True, blank=True)
+    total_rating = models.FloatField(default=0, null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'feedback)_form'
+        ordering = ['updated_at']
+
+    def __str__(self):
+        return str(self.id)
+
+
+class FeedbackAnswers(models.Model):
+    form_id = models.ForeignKey(FeedbackForm, on_delete=models.CASCADE)
+    answers = models.CharField(max_length=1000)
     student = models.ForeignKey(StudentRegistration, on_delete=models.CASCADE)
+    total_rating = models.FloatField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        db_table = 'feedback'
+        db_table = 'answers'
         ordering = ['updated_at']
 
     def __str__(self):
-        return self.faculty
-
-
-class Answers(models.Model):
-    form_id = models.ForeignKey(Feedback, on_delete=models.CASCADE)
-    answers = models.CharField(max_length=300)
-    student = models.ForeignKey(StudentRegistration, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        db_table = 'answer'
-        ordering = ['updated_at']
-
-    def __str__(self):
-        return self.form_id
+        return str(self.form_id)
 

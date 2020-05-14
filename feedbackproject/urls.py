@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from feedbackprojectapp.views import IndexView, FacultyUpdateView, StudentUpdateView ,StudentLoginView,StudentRegistrationView,StudentIndex,StudentForgotPasswordView,StudentView,\
-    FacultyLoginView,FacultyIndexView,FacultyForgotPasswordView,FacultyView,StudentLogout,FacultyLogout
+    FacultyLoginView,FacultyIndexView,FacultyForgotPasswordView,FacultyView,StudentLogout, FacultyLogout, FeedbackView 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', IndexView.as_view(),name='index'),
@@ -32,6 +32,6 @@ urlpatterns = [
     path('FacultyView/',FacultyView.as_view(),name='FacultyView'),
     path('faculty-update/<int:facultyid>', FacultyUpdateView.as_view(), name='faculty-update'),
     path('student-logout/',StudentLogout.as_view(),name='student-logout'),
-    path('faculty-logout/',FacultyLogout.as_view(),name='faculty-logout')
-
+    path('faculty-logout/',FacultyLogout.as_view(),name='faculty-logout'),
+    path('test', FeedbackView.as_view(), name='test')
 ]

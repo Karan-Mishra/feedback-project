@@ -2,12 +2,12 @@ from django.shortcuts import render,redirect
 from django.views.generic import TemplateView, UpdateView
 from django.http import HttpResponseRedirect, request
 from django.urls import reverse, reverse_lazy
-from .models import StudentRegistration,FacultyDatabase
-from .forms import StudentRegistrationForm, FacultyUpdateForm,StudentLoginForm,StudentForgotPasswordForm, StudentUpdateForm,FacultyLoginForm,FacultyForgotPasswordForm
+from .models import StudentRegistration, FacultyDatabase, FeedbackAnswers, StudentRegistration, FeedbackForm
+from .forms import StudentRegistrationForm, FacultyUpdateForm,StudentLoginForm,StudentForgotPasswordForm, StudentUpdateForm,FacultyLoginForm,FacultyForgotPasswordForm, FeedbackAnswerForm
 from django.contrib import messages
 from django.http.response import HttpResponse
 from django.contrib.sessions.models import Session
-from django.core import serializers
+from django.db.models import F
 
 
 class IndexView(TemplateView):
@@ -267,3 +267,47 @@ class FacultyLogout(TemplateView):
         del self.request.session['name']
         del self.request.session['lastname']
         return HttpResponseRedirect(reverse('index'))
+
+
+class FeedbackView(TemplateView):
+    template_name = 'test.html'
+
+    # def get(self, request, *args, **kwargs):
+    #     if not 'login' in self.request.session:
+    #         return HttpResponseRedirect(reverse('index'))
+    #     else:
+    #         return self.render_to_response(self.get_context_data(**kwargs))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["feedback_form"] = FeedbackAnswerForm(self.request.POST or None)
+        return context
+    
+
+    def post(self, request):
+        context = self.get_context_data()
+        if context['feedback_form'].is_valid():
+            forms_ = context['feedback_form']
+            print(forms_.clean())
+            values = forms_.clean()
+            total = 0
+            cnt = 0
+            for val in values:
+                total += int(values[val])
+                cnt += 1
+            avg = total/cnt
+            print(float(avg))
+            #get feedback form id from session
+            feedback_form = FeedbackForm.objects.get(pk=1)
+            #get student roll no from session
+            student = StudentRegistration.objects.get(rollno=1)
+            FeedbackAnswers.objects.create(answers=values, form_id=feedback_form, student=student, total_rating=avg)
+            #update count get data from session
+            data_val = FeedbackForm.objects.get(pk=1)
+            data_val.total_rating = float((data_val.total_rating + avg)/2)
+            data_val.save()
+            context['feedback_form'] = FeedbackAnswerForm()
+            return HttpResponseRedirect(reverse('test'))
+        else:
+            return HttpResponseRedirect(reverse('test'))
+        

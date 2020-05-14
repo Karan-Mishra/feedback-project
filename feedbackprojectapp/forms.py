@@ -1,6 +1,16 @@
 from django import forms
-from .models import StudentRegistration,FacultyDatabase
+from .models import StudentRegistration,FacultyDatabase, FeedbackAnswers, Question
 
+
+"""
+    question_choices = (
+        (1,'Strongly Agree'),
+        (2,'SECONDYEAR'),
+        (3,'THIRDYEAR'),
+        (4,'FORTHYEAR'),
+    )
+    options = models.IntegerField(choices=question_choices)
+"""
 
 class StudentRegistrationForm(forms.ModelForm):
     class Meta:
@@ -100,5 +110,20 @@ class FacultyUpdateForm(forms.ModelForm):
              'year': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Year'}),
         }
 
+
+class FeedbackAnswerForm(forms.Form):
+    question_choices = (
+        (1,'Strongly Agree'),
+        (2,'disagree'),
+        (3,'agree'),
+        (4,'neutral'),
+    )
+    questions = Question.objects.all()
+    for question in questions:
+        locals()[str(question.id)] = forms.ChoiceField(
+            widget=forms.Select(), 
+            choices=question_choices,
+            label = question.questions
+            )
 
 
