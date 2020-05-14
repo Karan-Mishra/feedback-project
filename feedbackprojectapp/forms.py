@@ -35,6 +35,8 @@ class StudentRegistrationForm(forms.ModelForm):
                 attrs={'class': 'form-control ',
                     'placeholder': 'Email Id',
                     'validators': 'User is already registered' }),
+            'admission_year': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Admission_year'}),
+
         }
 class StudentLoginForm(forms.ModelForm):
     class Meta:
@@ -112,11 +114,12 @@ class FacultyUpdateForm(forms.ModelForm):
 
 
 class FeedbackAnswerForm(forms.Form):
+
     question_choices = (
         (1,'Strongly Agree'),
-        (2,'disagree'),
-        (3,'agree'),
-        (4,'neutral'),
+        (2,'Disagree'),
+        (3,'Agree'),
+        (4,'Neutral'),
     )
     questions = Question.objects.all()
     for question in questions:

@@ -1,0 +1,88 @@
+<html>
+<head>
+    <title>Student Update Form</title>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body{
+        background:url(https://images.unsplash.com/photo-1568561300108-e0c35b5f7c1c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60);
+        background-repeat:no-repeat;
+        background-size:cover;
+        color:black;
+        }
+        .title {
+                margin: 5px auto 30px;
+                font-size: 25px;
+                text-align: center;
+                text-decoration: underline;
+                font-weight: bold;
+                color: #000;
+                background-color: white;
+                padding: 5px;
+                border-radius: 5px;
+            }
+            input[type=text], input[type=email], input[type=password],input[type=number] {
+                background-color: #E6E6E6;
+                padding: 6px;
+                font-size: small;
+                color: #574B4B;
+                font-weight: bold;
+            }
+            input[type=submit] {
+                padding: 5px 25px;
+                font-size: small;
+                color: lightgrey;
+                margin-left: 20px;
+            }
+            input[type=reset] {
+                padding: 5px 25px;
+                font-size: small;
+                color: lightgrey;
+                margin-left: 50px;
+            }
+             li {
+                list-style: none;
+                display: inline-block;
+                margin-right: 30px;
+            }
+            form {
+                border: 2px solid black;
+                padding: 40px;
+
+                border-radius: 5px;
+                }
+                 .linkClass a {
+                color: #000;
+                font-size: 15px;
+                margin: 0px 20px 10px 200px;
+            }
+
+     </style>
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+             <div class="title">Student Feedback Form </div>
+          <form method="POST">
+              {% csrf_token %}
+              {{feedback_form.as_p}}
+              <br><br>
+              <center>
+              <input type="submit" value="Submit" class="btn btn-primary mybtn">
+              </center>
+          </form>
+
+
+
+        </div>
+
+    </div>
+</div>>
+
+</body>
+</html>

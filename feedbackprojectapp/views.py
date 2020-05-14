@@ -59,6 +59,7 @@ class StudentLoginView(TemplateView):
                 self.request.session['data'] = data.pk
                 self.request.session['name'] = data.firstname
                 self.request.session['lastname'] = data.lastname
+                self.request.session['department'] = data.department.pk
                 return HttpResponseRedirect(reverse('StudentIndex'))
             else:
                 context['loginForm'] = StudentLoginForm()
@@ -268,9 +269,17 @@ class FacultyLogout(TemplateView):
         del self.request.session['lastname']
         return HttpResponseRedirect(reverse('index'))
 
-
-class FeedbackView(TemplateView):
+class Feedback(TemplateView):
     template_name = 'test.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['data'] = FeedbackForm.objects.filter(department__id=self.request.session['department'], status=True)
+        return context
+
+#feedback code
+class FeedbackView(TemplateView):
+    template_name = 'feedbackform.html'
 
     # def get(self, request, *args, **kwargs):
     #     if not 'login' in self.request.session:
@@ -281,10 +290,11 @@ class FeedbackView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["feedback_form"] = FeedbackAnswerForm(self.request.POST or None)
+        self.request.session['formid'] = self.kwargs['id']
         return context
     
 
-    def post(self, request):
+    def post(self, request, *args, **kwargs):
         context = self.get_context_data()
         if context['feedback_form'].is_valid():
             forms_ = context['feedback_form']
@@ -296,15 +306,15 @@ class FeedbackView(TemplateView):
                 total += int(values[val])
                 cnt += 1
             avg = total/cnt
-            print(float(avg))
             #get feedback form id from session
-            feedback_form = FeedbackForm.objects.get(pk=1)
+            feedback_form = FeedbackForm.objects.get(pk=self.request.session['formid'])
             #get student roll no from session
             student = StudentRegistration.objects.get(rollno=1)
             FeedbackAnswers.objects.create(answers=values, form_id=feedback_form, student=student, total_rating=avg)
             #update count get data from session
-            data_val = FeedbackForm.objects.get(pk=1)
+            data_val = FeedbackForm.objects.get(pk=self.request.session['formid'])
             data_val.total_rating = float((data_val.total_rating + avg)/2)
+            data_val.total_students = data_val.total_students + 1
             data_val.save()
             context['feedback_form'] = FeedbackAnswerForm()
             return HttpResponseRedirect(reverse('test'))

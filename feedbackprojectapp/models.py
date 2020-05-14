@@ -79,9 +79,16 @@ class FacultyDatabase(models.Model):
     )
     year = models.CharField(max_length=1,choices=YEAR_CHOICES,null=True)
 
+    class Meta:
+        db_table = 'faculty'
+        ordering = ['facultyid']
+
+    def __str__(self):
+        return str(self.firstname)
+
 
 class Question(models.Model):
-    questions = models.CharField(max_length=200)
+    questions = models.CharField(max_length=500)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -96,6 +103,8 @@ class Question(models.Model):
 class FeedbackForm(models.Model):
     title = models.CharField(max_length=50, blank=True)
     faculty = models.ForeignKey(FacultyDatabase, on_delete=models.CASCADE)
+    department = models.ForeignKey(DepartmentDatabase, on_delete=models.CASCADE, null=True)
+    subject = models.ForeignKey(SubjectDatabase, on_delete=models.CASCADE, null=True)
     status = models.BooleanField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     total_students = models.IntegerField(default=0, null=True, blank=True)
