@@ -97,7 +97,7 @@ class Question(models.Model):
         ordering = ['updated_at']
 
     def __str__(self):
-        return self.questions[:50]
+        return self.questions[:100]
 
 
 class FeedbackForm(models.Model):
@@ -105,6 +105,13 @@ class FeedbackForm(models.Model):
     faculty = models.ForeignKey(FacultyDatabase, on_delete=models.CASCADE)
     department = models.ForeignKey(DepartmentDatabase, on_delete=models.CASCADE, null=True)
     subject = models.ForeignKey(SubjectDatabase, on_delete=models.CASCADE, null=True)
+    YEAR_CHOICES = (
+        ('1', 'FIRSTYEAR'),
+        ('2', 'SECONDYEAR'),
+        ('3', 'THIRDYEAR'),
+        ('4', 'FORTHYEAR'),
+    )
+    year = models.CharField(max_length=1, choices=YEAR_CHOICES, null=True)
     status = models.BooleanField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     total_students = models.IntegerField(default=0, null=True, blank=True)
@@ -128,6 +135,7 @@ class FeedbackAnswers(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
+
         db_table = 'answers'
         ordering = ['updated_at']
 
