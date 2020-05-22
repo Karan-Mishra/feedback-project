@@ -95,12 +95,6 @@ class StudentRegistrationView(TemplateView):
 class StudentForgotPasswordView(TemplateView):
     template_name = 'studentforgotpassword.html'
 
-    def get(self, request, *args, **kwargs):
-
-        if not 'login' in self.request.session:
-            return HttpResponseRedirect(reverse('StudentLogin'))
-        else:
-            return self.render_to_response(self.get_context_data(**kwargs))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -210,7 +204,6 @@ class FacultyLoginView(TemplateView):
                 self.request.session['name'] = data.firstname
                 self.request.session['lastname'] = data.lastname
                 self.request.session['departmentf'] = data.department.pk
-                self.request.session['year'] = data.year
                 return HttpResponseRedirect(reverse('FacultyIndex'))
             else:
                 context['facultyloginForm'] = FacultyLoginForm()
@@ -225,12 +218,6 @@ class FacultyLoginView(TemplateView):
 class FacultyForgotPasswordView(TemplateView):
     template_name = 'facultyforgotpassword.html'
 
-    def get(self, request, *args, **kwargs):
-
-        if not 'login' in self.request.session:
-            return HttpResponseRedirect(reverse('FacultyLogin'))
-        else:
-            return self.render_to_response(self.get_context_data(**kwargs))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

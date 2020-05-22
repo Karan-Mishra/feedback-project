@@ -109,7 +109,7 @@ class FacultyUpdateForm(forms.ModelForm):
             'department': forms.Select(attrs={'class': 'form-control ', 'placeholder': 'Department'}),
             'subject': forms.Select(attrs={'class': 'form-control ', 'placeholder': 'Subject'}),
             'gender': forms.Select(attrs={'class': 'form-control ', 'placeholder': 'Select your gender'}),
-             'year': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Year'}),
+
         }
 
 

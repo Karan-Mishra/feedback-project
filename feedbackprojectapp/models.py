@@ -64,20 +64,13 @@ class FacultyDatabase(models.Model):
     mobile = models.BigIntegerField(unique=True)
     email = models.EmailField(unique=True)
     department = models.ForeignKey(DepartmentDatabase, on_delete=models.CASCADE, null=True)
-    subject = models.ForeignKey(SubjectDatabase, on_delete=models.CASCADE, null=True)
+    subject = models.ManyToManyField(SubjectDatabase,  null=True)
     GENDER_CHOICES = (
         ('M', 'Male'),
         ('F', 'Female'),
         ('O', 'Other')
     )
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, null=True)
-    YEAR_CHOICES = (
-        ('1','FIRSTYEAR'),
-        ('2','SECONDYEAR'),
-        ('3','THIRDYEAR'),
-        ('4','FORTHYEAR'),
-    )
-    year = models.CharField(max_length=1,choices=YEAR_CHOICES,null=True)
 
     class Meta:
         db_table = 'faculty'

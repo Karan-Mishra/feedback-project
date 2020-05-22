@@ -81,7 +81,6 @@ table{
                            <th>Department</th>
                            <th>Subject</th>
                            <th>Gender</th>
-                           <th>Year</th>
 
 
                        </tr>
@@ -98,9 +97,14 @@ table{
                                <td>{{i.mobile}}</td>
                                <td>{{ i.email }}</td>
                                <td>{{i.department}}</td>
-                               <td>{{i.subject}}</td>
+                               <td>
+                                   {% for sub in i.subject.all %}
+                                   <tl>{{sub}}</tl>
+                                   {% endfor %}
+                               </td>
+
                                <td>{{ i.gender }}</td>
-                                <td>{{ i.year }}</td>
+
 
 
                            </tr>
